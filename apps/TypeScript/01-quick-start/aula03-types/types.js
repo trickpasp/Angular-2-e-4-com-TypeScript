@@ -1,4 +1,3 @@
-"use strict";
 //Inferência de tipos
 //Can pass the 'any' as paramater that can be anytype
 function log(message) {
