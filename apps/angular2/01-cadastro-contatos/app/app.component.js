@@ -14,7 +14,7 @@ AppComponent = __decorate([
         template: `
         <h1>My First Angular 2 App, [Sou demais]</h1>
         
-        <button class="btn btn-success" >Hello Bootstrap</button>
+        <contatos-lista></contatos-lista>
     `
     })
 ], AppComponent);
