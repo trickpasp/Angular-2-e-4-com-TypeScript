@@ -9,8 +9,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 const core_1 = require("@angular/core");
 const contatos_mock_1 = require("./contatos.mock");
 let ContatoService = class ContatoService {
+    // Fazendo chamada assicrona ao servidor
     getContatos() {
-        return contatos_mock_1.CONTATOS;
+        return Promise.resolve(contatos_mock_1.CONTATOS);
     }
 };
 ContatoService = __decorate([

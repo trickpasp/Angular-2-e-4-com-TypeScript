@@ -6,8 +6,9 @@ import { CONTATOS } from './contatos.mock';
 
 @Injectable()
 export class ContatoService{
-
-    getContatos(): Contato[]{
-        return CONTATOS;
+    
+    // Fazendo chamada assicrona ao servidor
+    getContatos(): Promise<Contato[]> {
+        return Promise.resolve(CONTATOS);
     }
 }
