@@ -16,6 +16,8 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- Aqui vamos passar um property binding no routerLink, fazendo dessa forma, 
+                            podemos usar uma notação de array -->
                         <tr *ngFor="let c of contatos" [routerLink]="['/contato/save', 'c.id']">
                             
                             <td>{{ c.nome }}</td>

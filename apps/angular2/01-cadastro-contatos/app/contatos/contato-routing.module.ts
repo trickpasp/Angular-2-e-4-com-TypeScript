@@ -16,6 +16,7 @@ const contatoRoutes: Routes = [
         component: ContatoDetalheComponent
     },
     {
+        // passando paramêtro no roteamento, caminho, usasse dois pontos ":""
         path: 'contato/save/:id',
         component: ContatoDetalheComponent
     }
