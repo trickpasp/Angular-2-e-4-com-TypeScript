@@ -11,14 +11,17 @@ const contatos_lista_component_1 = require("./contatos-lista.component");
 const contato_detalhe_component_1 = require("./contato-detalhe.component");
 const contatoRoutes = [
     {
+        /* faz o roteamento para contatoslistacomponent */
         path: 'contato',
         component: contatos_lista_component_1.ContatosListaComponent
     },
     {
+        // faz o roteamento para contatodetalhecomponet
         path: 'contato/save',
         component: contato_detalhe_component_1.ContatoDetalheComponent
     },
     {
+        // passando paramêtro no roteamento, caminho, usasse dois pontos ":""
         path: 'contato/save/:id',
         component: contato_detalhe_component_1.ContatoDetalheComponent
     }
@@ -28,6 +31,7 @@ let ContatoRoutingModule = class ContatoRoutingModule {
 ContatoRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
+            // criando um roteador com rotas filhas
             router_1.RouterModule.forChild(contatoRoutes)
         ],
         exports: [
