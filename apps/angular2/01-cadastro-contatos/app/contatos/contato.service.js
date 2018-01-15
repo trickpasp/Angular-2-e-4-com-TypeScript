@@ -13,6 +13,12 @@ let ContatoService = class ContatoService {
     getContatos() {
         return Promise.resolve(contatos_mock_1.CONTATOS);
     }
+    //Colocando tempo de espera de 6 segundos
+    getContatosSlowly() {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, 6000);
+        }).then(() => this.getContatos());
+    }
 };
 ContatoService = __decorate([
     core_1.Injectable()
