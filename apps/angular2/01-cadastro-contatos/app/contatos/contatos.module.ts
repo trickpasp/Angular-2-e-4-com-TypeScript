@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ContatoDetalheComponent } from './contato-detalhe.component';
 import { ContatosListaComponent } from './contatos-lista.component';
 import { ContatoRoutingModule } from './contato-routing.module';
-import { ContatoDetalheComponent } from './contato-detalhe.component';
+import { ContatoService } from './contato.service';
 
 @NgModule({
     imports: [
@@ -16,6 +17,10 @@ import { ContatoDetalheComponent } from './contato-detalhe.component';
     ],
     exports: [
         ContatosListaComponent
+    ],
+    //Passando a instância de ContatoService
+    providers: [
+        ContatoService
     ]
 })
 export class ContatosModule{}

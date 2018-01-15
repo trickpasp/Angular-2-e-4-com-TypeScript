@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Contato } from './contato.model';
-import { CONTATOS } from './contatos.mock';
+import { ContatoService } from './contato.service';
 
 @Component({
     moduleId: module.id,
     selector: 'contatos-lista',
-    templateUrl: 'contatos-lista.component.html'
+    templateUrl: 'contatos-lista.component.html'    
 })
-export class ContatosListaComponent {
+export class ContatosListaComponent implements OnInit{    
     
-    contatos: Contato[] = CONTATOS;
+    contatos: Contato[];
+    /* Chamamos contatoservice no construtor, 
+    isso serve para o sistema de injeção de dependência do Angular 
+    saiba como injetar de forma correta */
+    constructor(private contatoService: ContatoService){}
+
+    ngOnInit(): void {
+        this.contatos = this.contatoService.getContatos();
+    }
 
 }
