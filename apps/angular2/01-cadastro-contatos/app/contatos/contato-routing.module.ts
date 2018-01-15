@@ -5,11 +5,13 @@ import { ContatosListaComponent } from './contatos-lista.component';
 import { ContatoDetalheComponent } from './contato-detalhe.component';
 
 const contatoRoutes: Routes = [
-    {
+    {    
+        /* faz o roteamento para contatoslistacomponent */
         path: 'contato',
         component: ContatosListaComponent
     },
     {
+        // faz o roteamento para contatodetalhecomponet
         path: 'contato/save',
         component: ContatoDetalheComponent
     },
@@ -21,6 +23,7 @@ const contatoRoutes: Routes = [
 
 @NgModule({
     imports: [
+        // criando um roteador com rotas filhas
         RouterModule.forChild(contatoRoutes)
     ], 
     exports: [
