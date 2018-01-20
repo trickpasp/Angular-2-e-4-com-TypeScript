@@ -15,7 +15,26 @@ export class ContatoService{
     //Colocando tempo de espera de 6 segundos
     getContatosSlowly(): Promise<Contato[]> {
         return new Promise((resolve, reject) => {
-            setTimeout(resolve, 6000);
-        }).then(() => this.getContatos());
+            setTimeout(resolve, 2000);
+        })
+        .then(() => {
+            console.log('Primero then');
+            return 'Aprendendo Angular 2';
+        })
+        .then((param: string) => {
+            console.log('Segundo then');            
+            console.log(param);
+
+            return new Promise((resolve2,reject2) => {
+                setTimeout(() =>{
+                    console.log('Continuando depois de 4 segundos');
+                    resolve2();
+                },4000);
+            });
+        })
+        .then(() => {
+            console.log("Terceiro then")
+            return this.getContatos();
+        });
     }
 }
