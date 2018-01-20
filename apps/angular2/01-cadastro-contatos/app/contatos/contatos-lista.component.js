@@ -18,7 +18,7 @@ let ContatosListaComponent = class ContatosListaComponent {
         this.contatoService = contatoService;
     }
     ngOnInit() {
-        this.contatoService.getContatosSlowly()
+        this.contatoService.getContatos()
             .then((contatos) => {
             this.contatos = contatos;
         }).catch(err => console.log(err));
