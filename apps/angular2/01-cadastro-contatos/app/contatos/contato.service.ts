@@ -11,6 +11,11 @@ export class ContatoService{
     getContatos(): Promise<Contato[]> {
         return Promise.resolve(CONTATOS);
     }
+
+    getContato(id: number): Promise<Contato> {
+        return this.getContatos()
+            .then((contatos: Contato[]) => contatos.find(contato =>  contato.id === id));
+    } 
     
     //Colocando tempo de espera de 6 segundos
     getContatosSlowly(): Promise<Contato[]> {

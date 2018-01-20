@@ -22,7 +22,11 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         console.log('on init');
         this.route.params.forEach((params) => {
             let id = +params['id'];
-            console.log(typeof id);
+            console.log(id);
+            this.contatoService.getContato(id)
+                .then((contato) => {
+                console.log(contato);
+            });
         });
     }
 };

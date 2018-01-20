@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
+import { Contato } from './contato.model';
 import { ContatoService } from './contato.service';
 
 @Component({
@@ -21,7 +22,12 @@ export class ContatoDetalheComponent implements OnInit{
         console.log('on init');
         this.route.params.forEach((params: Params) => {
             let id: number = +params['id'];
-            console.log(typeof id);
+            console.log(id);
+
+            this.contatoService.getContato(id)
+                .then((contato: Contato) => {
+                    console.log(contato);
+                });
         });
     }
     
