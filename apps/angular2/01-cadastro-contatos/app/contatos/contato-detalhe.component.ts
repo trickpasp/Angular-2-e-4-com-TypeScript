@@ -1,42 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { Location } from "@angular/common";
 
-import { Contato } from './contato.model';
-import { ContatoService } from './contato.service';
+import { Contato } from "./contato.model";
+import { ContatoService } from "./contato.service";
 
 @Component({
-    moduleId: module.id,
-    selector: 'contato-detalhe',
-    templateUrl: 'contato-detalhe.component.html'
+  moduleId: module.id,
+  selector: "contato-detalhe",
+  templateUrl: "contato-detalhe.component.html"
 })
-export class ContatoDetalheComponent implements OnInit{
-    // one-way database, porque estamos pegando o atributo da classe e exibindo no html
-    contato: Contato;
-   
-    constructor(
-        private contatoService: ContatoService,
-        private route: ActivatedRoute,
-        private location: Location
-    ){}
-    
-    //buscando usuário pelo id
-    ngOnInit(): void {
-        // nós temos que inicializar aqui, pois ele primeiro carrega o OnInit e para pegar os valores, assim, temos que inicializar
-        this.contato = new Contato(0, '', '', '');
-        this.route.params.forEach((params: Params) => {
-            let id: number = +params['id'];
-            console.log(id);
+export class ContatoDetalheComponent implements OnInit {
+  // one-way database, porque estamos pegando o atributo da classe e exibindo no html
+  contato: Contato;
 
-            this.contatoService.getContato(id)
-                .then((contato: Contato) => {
-                    this.contato = contato;
-                });
-        });
-    }
+  constructor(
+    private contatoService: ContatoService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
-    teste(): void {
-        console.log(this.contato);
-    }
-    
+  //buscando usuário pelo id
+  ngOnInit(): void {
+    // nós temos que inicializar aqui, pois ele primeiro carrega o OnInit e para pegar os valores, assim, temos que inicializar
+    this.contato = new Contato(0, "", "", "");
+    this.route.params.forEach((params: Params) => {
+      let id: number = +params["id"];
+      //verificando parâmetro de rota
+      if (id) {
+        this.contatoService.getContato(id)
+            .then((contato: Contato) => {
+                  this.contato = contato;
+            });
+      }
+    });
+  }
+
+  teste(): void {
+    console.log(this.contato);
+  }
 }

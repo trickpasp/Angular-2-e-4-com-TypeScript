@@ -22,14 +22,16 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
     //buscando usuário pelo id
     ngOnInit() {
         // nós temos que inicializar aqui, pois ele primeiro carrega o OnInit e para pegar os valores, assim, temos que inicializar
-        this.contato = new contato_model_1.Contato(0, '', '', '');
+        this.contato = new contato_model_1.Contato(0, "", "", "");
         this.route.params.forEach((params) => {
-            let id = +params['id'];
-            console.log(id);
-            this.contatoService.getContato(id)
-                .then((contato) => {
-                this.contato = contato;
-            });
+            let id = +params["id"];
+            //verificando parâmetro de rota
+            if (id) {
+                this.contatoService.getContato(id)
+                    .then((contato) => {
+                    this.contato = contato;
+                });
+            }
         });
     }
     teste() {
@@ -39,8 +41,8 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
 ContatoDetalheComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'contato-detalhe',
-        templateUrl: 'contato-detalhe.component.html'
+        selector: "contato-detalhe",
+        templateUrl: "contato-detalhe.component.html"
     }),
     __metadata("design:paramtypes", [contato_service_1.ContatoService,
         router_1.ActivatedRoute,
