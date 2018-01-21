@@ -8,7 +8,15 @@ import { ContatoService } from "./contato.service";
 @Component({
   moduleId: module.id,
   selector: "contato-detalhe",
-  templateUrl: "contato-detalhe.component.html"
+  templateUrl: "contato-detalhe.component.html",
+  styles: [`
+      .ng-valid[required] {
+          border: 3px solid green;
+      }
+      .ng-invalid:not(form) {
+          border: 3px solid tomato;
+      }
+  `]
 })
 export class ContatoDetalheComponent implements OnInit {
   // one-way database, porque estamos pegando o atributo da classe e exibindo no html
