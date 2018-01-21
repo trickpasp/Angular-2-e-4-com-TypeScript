@@ -11,7 +11,7 @@ export class ContatoService{
     getContatos(): Promise<Contato[]> {
         return Promise.resolve(CONTATOS);
     }
-
+    //obtendo usuário pelo id
     getContato(id: number): Promise<Contato> {
         return this.getContatos()
             .then((contatos: Contato[]) => contatos.find(contato =>  contato.id === id));

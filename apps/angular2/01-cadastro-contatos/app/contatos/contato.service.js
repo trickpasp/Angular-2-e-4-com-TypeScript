@@ -13,6 +13,7 @@ let ContatoService = class ContatoService {
     getContatos() {
         return Promise.resolve(contatos_mock_1.CONTATOS);
     }
+    //obtendo usuário pelo id
     getContato(id) {
         return this.getContatos()
             .then((contatos) => contatos.find(contato => contato.id === id));

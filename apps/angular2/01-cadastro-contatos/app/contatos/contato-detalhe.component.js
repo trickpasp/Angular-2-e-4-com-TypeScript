@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require("@angular/core");
 const router_1 = require("@angular/router");
 const common_1 = require("@angular/common");
+const contato_model_1 = require("./contato.model");
 const contato_service_1 = require("./contato.service");
 let ContatoDetalheComponent = class ContatoDetalheComponent {
     constructor(contatoService, route, location) {
@@ -18,16 +19,21 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.route = route;
         this.location = location;
     }
+    //buscando usuário pelo id
     ngOnInit() {
-        console.log('on init');
+        // nós temos que inicializar aqui, pois ele primeiro carrega o OnInit e para pegar os valores, assim, temos que inicializar
+        this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach((params) => {
             let id = +params['id'];
             console.log(id);
             this.contatoService.getContato(id)
                 .then((contato) => {
-                console.log(contato);
+                this.contato = contato;
             });
         });
+    }
+    teste() {
+        console.log(this.contato);
     }
 };
 ContatoDetalheComponent = __decorate([
