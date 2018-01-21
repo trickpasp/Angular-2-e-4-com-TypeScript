@@ -37,6 +37,6 @@ export class ContatoDetalheComponent implements OnInit {
   }
 
   teste(): void {
-    console.log(this.contato);
+    console.log();
   }
 }

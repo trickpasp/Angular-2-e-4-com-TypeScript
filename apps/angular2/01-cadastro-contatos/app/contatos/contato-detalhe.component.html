@@ -2,26 +2,31 @@
 
     <h2>Salvar Contato</h2>
 
-    <form action="">
+    <!-- definindo uma variável para nosso form, aqui vamos ter acesso ao nosso formcontrol -->
+    <form #contatoForm="ngForm">
         <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" placeholder="Insira o nome"
+                required
                 name="nome"                
                 [(ngModel)]="contato.nome">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" placeholder="Insira o email"
+                required
                 name="email"
                 [(ngModel)]="contato.email">
         </div>
         <div class="form-group">
             <label for="telefone">Telefone</label>
             <input type="text" class="form-control" placeholder="Insira o telefone"
+                required
                 name="telefone"
                 [(ngModel)]="contato.telefone">
         </div>
-        <button class="btn btn-success">Salvar</button>
+        <!-- aqui fazemos um property binding para validar o formulário -->
+        <button class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
         <a class="btn btn-secondary" routerLink="/">Voltar</a>
     </form>
 
