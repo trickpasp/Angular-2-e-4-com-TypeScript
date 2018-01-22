@@ -1,5 +1,6 @@
 "use strict";
 class InMemoryDataService {
+    //serve para fazer a simulação do banco de dados
     createDb() {
         let contatos = [
             { id: 1, nome: 'Fulano de tal', email: 'fulano@email.com', telefone: '(00) 0000-0000' },
