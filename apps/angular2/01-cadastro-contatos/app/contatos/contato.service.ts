@@ -1,5 +1,8 @@
 /* Serviço contato */
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/toPromise';
 
 import { Contato } from './contato.model';
 import { CONTATOS } from './contatos.mock';
@@ -7,9 +10,19 @@ import { CONTATOS } from './contatos.mock';
 @Injectable()
 export class ContatoService{
     
+    //url onde vamos utilizar o simulador de banco de dados
+    private contatosUrl: string = 'app/contatos';
+
+    constructor(
+        private http: Http
+    ){}
+    
     // Fazendo chamada assicrona ao servidor
+    // Convertemos a chamada http para uma promise 
     getContatos(): Promise<Contato[]> {
-        return Promise.resolve(CONTATOS);
+        return this.http.get(this.contatosUrl)
+                .toPromise()
+                .then(response => response.json().data as Contato[]);
     }
     //obtendo usuário pelo id
     getContato(id: number): Promise<Contato> {
