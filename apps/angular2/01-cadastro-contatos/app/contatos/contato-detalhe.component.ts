@@ -50,7 +50,5 @@ export class ContatoDetalheComponent implements OnInit {
     };
   }
 
-  teste(): void {
-    console.log();
-  }
+ 
 }

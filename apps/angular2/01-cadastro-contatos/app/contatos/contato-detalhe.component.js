@@ -48,9 +48,6 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             'is-valid': isValid && !isPristine
         };
     }
-    teste() {
-        console.log();
-    }
 };
 ContatoDetalheComponent = __decorate([
     core_1.Component({
