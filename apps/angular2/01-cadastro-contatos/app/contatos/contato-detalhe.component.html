@@ -3,7 +3,7 @@
     <h2>Salvar Contato</h2>
 
     <!-- definindo uma variável para nosso form, aqui vamos ter acesso ao nosso formcontrol -->
-    <form #contatoForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #contatoForm="ngForm" novalidate>
 
         <div [ngClass]="getFormGroupClass()" >
             <label for="nome">Nome</label>
@@ -39,7 +39,5 @@
         <button class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
         <a class="btn btn-secondary" routerLink="/">Voltar</a>
     </form>
-
-    <button (click)="teste()" class="btn btn-warning">Log</button>
 
 </div>
