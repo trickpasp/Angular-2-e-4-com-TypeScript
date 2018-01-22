@@ -5,14 +5,14 @@
     <!-- definindo uma variável para nosso form, aqui vamos ter acesso ao nosso formcontrol -->
     <form #contatoForm="ngForm">
 
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'form-group': true}" >
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" placeholder="Insira o nome"
+            <input type="text" class="" [ngClass]="{'form-control':true, 'is-invalid':(!nome.valid && !nome.pristine), 'is-valid':(nome.valid && !nome.pristine)}" placeholder="Insira o nome"
                 required
+                #nome="ngModel"
                 name="nome"                
-                [(ngModel)]="contato.nome"
-                #spy>
-               <div class="alert alert-info"> {{ spy.className }} </div> 
+                [(ngModel)]="contato.nome">
+            <div class="invalid-feedback" [hidden]="nome.valid || nome.pristine" >O campo é obrigatório!</div>
         </div>
 
         <div class="form-group">
