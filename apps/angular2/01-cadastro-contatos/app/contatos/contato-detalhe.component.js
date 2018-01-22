@@ -34,6 +34,18 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             }
         });
     }
+    getFormGroupClass() {
+        return {
+            'form-group': true
+        };
+    }
+    getFormControlClass(isValid, isPristine) {
+        return {
+            'form-control': true,
+            'is-invalid': !isValid && !isPristine,
+            'is-valid': isValid && !isPristine
+        };
+    }
     teste() {
         console.log();
     }

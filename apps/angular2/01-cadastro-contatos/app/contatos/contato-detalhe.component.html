@@ -5,22 +5,24 @@
     <!-- definindo uma variável para nosso form, aqui vamos ter acesso ao nosso formcontrol -->
     <form #contatoForm="ngForm">
 
-        <div class="form-group" [ngClass]="{'form-group': true}" >
+        <div [ngClass]="getFormGroupClass()" >
             <label for="nome">Nome</label>
-            <input type="text" class="" [ngClass]="{'form-control':true, 'is-invalid':(!nome.valid && !nome.pristine), 'is-valid':(nome.valid && !nome.pristine)}" placeholder="Insira o nome"
+            <input type="text" [ngClass]="getFormControlClass(nome.valid, nome.pristine)" placeholder="Insira o nome"
                 required
                 #nome="ngModel"
                 name="nome"                
                 [(ngModel)]="contato.nome">
-            <div class="invalid-feedback" [hidden]="nome.valid || nome.pristine" >O campo é obrigatório!</div>
+            <div class="invalid-feedback" [hidden]="nome.valid || nome.pristine" >O campo nome é obrigatório!</div>
         </div>
 
-        <div class="form-group">
+        <div [ngClass]="getFormGroupClass()">
             <label for="email">Email</label>
-            <input type="email" class="form-control" placeholder="Insira o email"
+            <input type="email" [ngClass]="getFormControlClass(email.valid, email.pristine)" placeholder="Insira o email"
                 required
+                #email="ngModel"
                 name="email"
                 [(ngModel)]="contato.email">
+                <div class="invalid-feedback" [hidden]="email.valid || email.pristine" >O campo email é obrigatório!</div>
         </div>
 
         <div class="form-group">
@@ -29,6 +31,7 @@
                 required
                 name="telefone"
                 [(ngModel)]="contato.telefone">
+            
         </div>
 
         <!-- aqui fazemos um property binding para validar o formulário -->

@@ -36,6 +36,20 @@ export class ContatoDetalheComponent implements OnInit {
     });
   }
 
+  getFormGroupClass(): {} {
+    return {
+        'form-group':true        
+    };
+  }
+
+  getFormControlClass(isValid: boolean, isPristine: boolean): {} {
+    return {
+        'form-control':true,
+        'is-invalid': !isValid && !isPristine,
+        'is-valid': isValid && !isPristine
+    };
+  }
+
   teste(): void {
     console.log();
   }
