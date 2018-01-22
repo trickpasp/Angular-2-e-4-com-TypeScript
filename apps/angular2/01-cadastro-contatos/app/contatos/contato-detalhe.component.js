@@ -18,6 +18,8 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.contatoService = contatoService;
         this.route = route;
         this.location = location;
+        //utilizada para dizer que estamos entrando em um formulário para cadastrar um novo usuário
+        this.isNew = true;
     }
     //buscando usuário pelo id
     ngOnInit() {
@@ -27,6 +29,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             let id = +params["id"];
             //verificando parâmetro de rota
             if (id) {
+                this.isNew = false;
                 this.contatoService.getContato(id)
                     .then((contato) => {
                     this.contato = contato;
@@ -47,6 +50,14 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             'is-invalid': !isValid && !isPristine,
             'is-valid': isValid && !isPristine
         };
+    }
+    onSubmit() {
+        if (this.isNew) {
+            console.log('cadastrar contato');
+        }
+        else {
+            console.log('alterar contato');
+        }
     }
 };
 ContatoDetalheComponent = __decorate([

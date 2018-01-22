@@ -13,6 +13,8 @@ import { ContatoService } from "./contato.service";
 export class ContatoDetalheComponent implements OnInit {
   // one-way database, porque estamos pegando o atributo da classe e exibindo no html
   contato: Contato;
+  //utilizada para dizer que estamos entrando em um formulário para cadastrar um novo usuário
+  private isNew: boolean = true;
 
   constructor(
     private contatoService: ContatoService,
@@ -28,10 +30,11 @@ export class ContatoDetalheComponent implements OnInit {
       let id: number = +params["id"];
       //verificando parâmetro de rota
       if (id) {
-        this.contatoService.getContato(id)
-            .then((contato: Contato) => {
-                  this.contato = contato;
-            });
+          this.isNew = false;
+          this.contatoService.getContato(id)
+              .then((contato: Contato) => {
+                    this.contato = contato;
+              });
       }
     });
   }
@@ -48,6 +51,16 @@ export class ContatoDetalheComponent implements OnInit {
         'is-invalid': !isValid && !isPristine,
         'is-valid': isValid && !isPristine
     };
+  }
+
+  onSubmit(): void {
+    
+    if (this.isNew){
+        console.log('cadastrar contato');
+    } else {
+        console.log('alterar contato');
+    }
+
   }
 
  
