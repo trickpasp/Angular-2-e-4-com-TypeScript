@@ -34,11 +34,13 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             }
         });
     }
+    //metódo criado para retornar a classe form-group do bootstrap
     getFormGroupClass() {
         return {
             'form-group': true
         };
     }
+    //método criado para retornar a classe form-control do bootstrap mais as validações
     getFormControlClass(isValid, isPristine) {
         return {
             'form-control': true,

@@ -35,13 +35,13 @@ export class ContatoDetalheComponent implements OnInit {
       }
     });
   }
-
+  //metódo criado para retornar a classe form-group do bootstrap
   getFormGroupClass(): {} {
     return {
         'form-group':true        
     };
   }
-
+  //método criado para retornar a classe form-control do bootstrap mais as validações
   getFormControlClass(isValid: boolean, isPristine: boolean): {} {
     return {
         'form-control':true,
