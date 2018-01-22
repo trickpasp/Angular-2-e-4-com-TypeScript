@@ -51,6 +51,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             'is-valid': isValid && !isPristine
         };
     }
+    //método para fazer submissão do formulário
     onSubmit() {
         if (this.isNew) {
             console.log('cadastrar contato');

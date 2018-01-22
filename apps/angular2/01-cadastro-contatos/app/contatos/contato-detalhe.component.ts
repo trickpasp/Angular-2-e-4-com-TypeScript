@@ -52,7 +52,8 @@ export class ContatoDetalheComponent implements OnInit {
         'is-valid': isValid && !isPristine
     };
   }
-
+  
+  //método para fazer submissão do formulário
   onSubmit(): void {
     
     if (this.isNew){
