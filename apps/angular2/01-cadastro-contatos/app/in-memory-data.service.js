@@ -9,7 +9,14 @@ class InMemoryDataService {
             { id: 4, nome: 'Monkey D. Luffy', email: 'luffy@email.com', telefone: '(16) 0800-0030' },
             { id: 5, nome: 'Fada Cininho', email: 'cininho@email.com', telefone: '(90) 1023-8389' }
         ];
-        return { contatos };
+        let carros = [
+            { id: 1, descricao: 'Camaro' },
+            { id: 2, descricao: 'Mustang' }
+        ];
+        return {
+            'contatos': contatos,
+            'carros': carros
+        };
     }
 }
 exports.InMemoryDataService = InMemoryDataService;

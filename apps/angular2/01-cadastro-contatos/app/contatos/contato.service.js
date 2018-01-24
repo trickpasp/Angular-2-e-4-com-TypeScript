@@ -23,12 +23,18 @@ let ContatoService = class ContatoService {
     getContatos() {
         return this.http.get(this.contatosUrl)
             .toPromise()
-            .then(response => response.json().data);
+            .then(response => response.json().data)
+            .catch(this.handleError);
     }
     //obtendo usuário pelo id
     getContato(id) {
         return this.getContatos()
             .then((contatos) => contatos.find(contato => contato.id === id));
+    }
+    //criando metodo de tratamento de erro
+    handleError(err) {
+        console.log('Error: ', err);
+        return Promise.reject(err.message || err);
     }
     //Colocando tempo de espera de 6 segundos
     getContatosSlowly() {

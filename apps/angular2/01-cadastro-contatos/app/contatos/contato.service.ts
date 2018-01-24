@@ -22,7 +22,8 @@ export class ContatoService{
     getContatos(): Promise<Contato[]> {
         return this.http.get(this.contatosUrl)
                 .toPromise()
-                .then(response => response.json().data as Contato[]);
+                .then(response => response.json().data as Contato[])
+                .catch(this.handleError);
     }
     //obtendo usuário pelo id
     getContato(id: number): Promise<Contato> {
@@ -30,6 +31,12 @@ export class ContatoService{
             .then((contatos: Contato[]) => contatos.find(contato =>  contato.id === id));
     } 
     
+    //criando metodo de tratamento de erro
+    private handleError(err: any): Promise<any> {
+        console.log('Error: ', err);
+        return Promise.reject(err.message || err);
+    }
+
     //Colocando tempo de espera de 6 segundos
     getContatosSlowly(): Promise<Contato[]> {
         return new Promise((resolve, reject) => {
