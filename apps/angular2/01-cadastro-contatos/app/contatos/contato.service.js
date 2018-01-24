@@ -17,6 +17,7 @@ let ContatoService = class ContatoService {
         this.http = http;
         //url onde vamos utilizar o simulador de banco de dados
         this.contatosUrl = 'app/contatos';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     // Fazendo chamada assicrona ao servidor
     // Convertemos a chamada http para uma promise 
@@ -30,6 +31,16 @@ let ContatoService = class ContatoService {
     getContato(id) {
         return this.getContatos()
             .then((contatos) => contatos.find(contato => contato.id === id));
+    }
+    // criando método de criar contatos
+    create(contato) {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then((response) => {
+            console.log(response.json().data);
+            return response.json().data;
+        })
+            .catch(this.handleError);
     }
     //criando metodo de tratamento de erro
     handleError(err) {

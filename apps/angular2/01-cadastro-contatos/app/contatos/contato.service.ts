@@ -1,6 +1,6 @@
 /* Serviço contato */
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -12,6 +12,7 @@ export class ContatoService{
     
     //url onde vamos utilizar o simulador de banco de dados
     private contatosUrl: string = 'app/contatos';
+    private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(
         private http: Http
@@ -30,6 +31,17 @@ export class ContatoService{
         return this.getContatos()
             .then((contatos: Contato[]) => contatos.find(contato =>  contato.id === id));
     } 
+
+    // criando método de criar contatos
+    create(contato: Contato): Promise<Contato> {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), {headers: this.headers})
+            .toPromise()
+            .then((response: Response) => {
+                console.log(response.json().data);
+                return response.json().data as Contato;
+            })
+            .catch(this.handleError);
+    }
     
     //criando metodo de tratamento de erro
     private handleError(err: any): Promise<any> {

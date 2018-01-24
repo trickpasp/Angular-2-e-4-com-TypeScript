@@ -7,7 +7,8 @@
 
         <div [ngClass]="getFormGroupClass()" >
             <label for="nome">Nome</label>
-            <input type="text" [ngClass]="getFormControlClass(nome.valid, nome.pristine)" placeholder="Insira o nome"
+            <input type="text" placeholder="Insira o nome"
+                [ngClass]="getFormControlClass(nome.valid, nome.pristine)"
                 required
                 #nome="ngModel"
                 name="nome"                
@@ -17,7 +18,8 @@
 
         <div [ngClass]="getFormGroupClass()">
             <label for="email">Email</label>
-            <input type="email" [ngClass]="getFormControlClass(email.valid, email.pristine)" placeholder="Insira o email"
+            <input type="email" placeholder="Insira o email"
+                [ngClass]="getFormControlClass(email.valid, email.pristine)"
                 required
                 #email="ngModel"
                 name="email"
@@ -27,16 +29,17 @@
 
         <div [ngClass]="getFormGroupClass()">
             <label for="telefone">Telefone</label>
-            <input type="text" [ngClass]="getFormControlClass(telefone.valid,telefone.pristine)" placeholder="Insira o telefone"
+            <input type="text" placeholder="Insira o telefone"
+                [ngClass]="getFormControlClass(telefone.valid,telefone.pristine)"
                 required
                 #telefone="ngModel"
                 name="telefone"
                 [(ngModel)]="contato.telefone">
-                <div class="invalid-feedback" [hidden]="telefone.valid || telefone.pristine" >O campo é obrigatório!</div>
+                <div class="invalid-feedback" [hidden]="telefone.valid || telefone.pristine" >O campo telefone é obrigatório!</div>
         </div>
 
         <!-- aqui fazemos um property binding para validar o formulário -->
-        <button class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
+        <button type="submit" class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
         <a class="btn btn-secondary" routerLink="/">Voltar</a>
     </form>
 

@@ -24,9 +24,9 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
     //buscando usuário pelo id
     ngOnInit() {
         // nós temos que inicializar aqui, pois ele primeiro carrega o OnInit e para pegar os valores, assim, temos que inicializar
-        this.contato = new contato_model_1.Contato(0, "", "", "");
+        this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach((params) => {
-            let id = +params["id"];
+            let id = +params['id'];
             //verificando parâmetro de rota
             if (id) {
                 this.isNew = false;
@@ -53,12 +53,16 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
     }
     //método para fazer submissão do formulário
     onSubmit() {
+        let promise;
         if (this.isNew) {
             console.log('cadastrar contato');
+            console.log(this.contato);
+            promise = this.contatoService.create(this.contato);
         }
         else {
             console.log('alterar contato');
         }
+        promise.then(contato => this.location.back());
     }
 };
 ContatoDetalheComponent = __decorate([

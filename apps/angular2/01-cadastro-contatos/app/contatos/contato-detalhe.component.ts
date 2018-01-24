@@ -25,12 +25,14 @@ export class ContatoDetalheComponent implements OnInit {
   //buscando usuário pelo id
   ngOnInit(): void {
     // nós temos que inicializar aqui, pois ele primeiro carrega o OnInit e para pegar os valores, assim, temos que inicializar
-    this.contato = new Contato(0, "", "", "");
+    this.contato = new Contato(0,'','','');
     this.route.params.forEach((params: Params) => {
-      let id: number = +params["id"];
+      let id: number = +params['id'];
       //verificando parâmetro de rota
       if (id) {
+
           this.isNew = false;
+
           this.contatoService.getContato(id)
               .then((contato: Contato) => {
                     this.contato = contato;
@@ -55,12 +57,18 @@ export class ContatoDetalheComponent implements OnInit {
   
   //método para fazer submissão do formulário
   onSubmit(): void {
+
+    let promise: Promise<Contato>;
     
     if (this.isNew){
         console.log('cadastrar contato');
+        console.log(this.contato);
+        promise = this.contatoService.create(this.contato);
     } else {
         console.log('alterar contato');
     }
+    
+    promise.then(contato => this.location.back());
 
   }
 

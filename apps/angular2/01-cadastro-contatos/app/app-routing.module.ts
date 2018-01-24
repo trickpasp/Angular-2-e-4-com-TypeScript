@@ -6,9 +6,9 @@ import { RouterModule, Routes } from "@angular/router";
 const appRoutes: Routes = [
     /* Primeira rota, rota raiz */
   {
-    path: "",
-    redirectTo: "contato",
-    pathMatch: "full"
+    path: '',
+    redirectTo: 'contato',
+    pathMatch: 'full'
   }
 ];
 

@@ -12,9 +12,9 @@ const router_1 = require("@angular/router");
 const appRoutes = [
     /* Primeira rota, rota raiz */
     {
-        path: "",
-        redirectTo: "contato",
-        pathMatch: "full"
+        path: '',
+        redirectTo: 'contato',
+        pathMatch: 'full'
     }
 ];
 let AppRoutingModule = class AppRoutingModule {

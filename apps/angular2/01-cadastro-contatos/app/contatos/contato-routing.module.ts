@@ -27,8 +27,6 @@ const contatoRoutes: Routes = [
         // criando um roteador com rotas filhas
         RouterModule.forChild(contatoRoutes)
     ], 
-    exports: [
-        RouterModule
-    ]
+    exports: [RouterModule]
 })
 export class ContatoRoutingModule {}

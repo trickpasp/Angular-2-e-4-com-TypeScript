@@ -34,9 +34,7 @@ ContatoRoutingModule = __decorate([
             // criando um roteador com rotas filhas
             router_1.RouterModule.forChild(contatoRoutes)
         ],
-        exports: [
-            router_1.RouterModule
-        ]
+        exports: [router_1.RouterModule]
     })
 ], ContatoRoutingModule);
 exports.ContatoRoutingModule = ContatoRoutingModule;
