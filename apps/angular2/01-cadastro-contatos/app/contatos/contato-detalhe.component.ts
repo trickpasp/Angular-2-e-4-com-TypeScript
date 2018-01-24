@@ -58,7 +58,7 @@ export class ContatoDetalheComponent implements OnInit {
   //método para fazer submissão do formulário
   onSubmit(): void {
 
-    let promise: Promise<Contato>;
+    let promise;
     
     if (this.isNew){
         console.log('cadastrar contato');
