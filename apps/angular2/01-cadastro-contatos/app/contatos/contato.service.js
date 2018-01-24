@@ -36,10 +36,7 @@ let ContatoService = class ContatoService {
     create(contato) {
         return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
             .toPromise()
-            .then((response) => {
-            console.log(response.json().data);
-            return response.json().data;
-        })
+            .then((response) => response.json().data)
             .catch(this.handleError);
     }
     //criando metodo de tratamento de erro

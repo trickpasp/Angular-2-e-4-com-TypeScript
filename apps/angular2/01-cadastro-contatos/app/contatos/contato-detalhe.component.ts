@@ -61,8 +61,7 @@ export class ContatoDetalheComponent implements OnInit {
     let promise;
     
     if (this.isNew){
-        console.log('cadastrar contato');
-        console.log(this.contato);
+        console.log('cadastrar contato');        
         promise = this.contatoService.create(this.contato);
     } else {
         console.log('alterar contato');

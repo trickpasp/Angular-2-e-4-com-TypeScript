@@ -36,10 +36,7 @@ export class ContatoService{
     create(contato: Contato): Promise<Contato> {
         return this.http.post(this.contatosUrl, JSON.stringify(contato), {headers: this.headers})
             .toPromise()
-            .then((response: Response) => {
-                console.log(response.json().data);
-                return response.json().data as Contato;
-            })
+            .then((response: Response) => response.json().data as Contato)
             .catch(this.handleError);
     }
     

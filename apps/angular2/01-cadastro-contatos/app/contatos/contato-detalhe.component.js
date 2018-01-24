@@ -56,7 +56,6 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         let promise;
         if (this.isNew) {
             console.log('cadastrar contato');
-            console.log(this.contato);
             promise = this.contatoService.create(this.contato);
         }
         else {
