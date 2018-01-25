@@ -4,6 +4,8 @@ import { Contato } from './contato.model';
 import { ContatoService } from './contato.service';
 import { DialogService } from '../dialog.service';
 
+
+
 @Component({
     moduleId: module.id,
     selector: 'contatos-lista',
@@ -14,6 +16,7 @@ export class ContatosListaComponent implements OnInit{
     contatos: Contato[];
     mensagem: {};
     classesCss: {};
+    private currentTimeout: any;
     /* Chamamos contatoservice no construtor, 
     isso serve para o sistema de injeção de dependência do Angular 
     saiba como injetar de forma correta */
@@ -69,7 +72,12 @@ export class ContatosListaComponent implements OnInit{
         this.mensagem = mensagem;
         this.montarClasses(mensagem.tipo);
         if (mensagem.tipo != 'danger') {
-            setTimeout(() => {
+
+            if (this.currentTimeout) {
+                clearTimeout(this.currentTimeout);
+            }
+
+            this.currentTimeout = setTimeout(() => {
                 this.mensagem = undefined;
             }, 3000);
         }        
