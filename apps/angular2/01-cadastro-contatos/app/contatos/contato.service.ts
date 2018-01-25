@@ -32,7 +32,7 @@ export class ContatoService{
             .then((contatos: Contato[]) => contatos.find(contato =>  contato.id === id));
     } 
 
-    // criando método de criar contatos
+    //método de criar contatos
     create(contato: Contato): Promise<Contato> {
         return this.http
             .post(this.contatosUrl, JSON.stringify(contato), {headers: this.headers})
@@ -49,8 +49,17 @@ export class ContatoService{
             .then(() => contato as Contato)
             .catch(this.handleError);
     }
+
+    delete(contato: Contato): Promise<Contato>{
+        const url = `${this.contatosUrl}/${contato.id}`; // app/contato/:id
+        return this.http
+            .delete(url, {headers: this.headers})
+            .toPromise()
+            .then(() => contato as Contato)
+            .catch(this.handleError);
+    }
     
-    //criando metodo de tratamento de erro
+    //metodo de tratamento de erro
     private handleError(err: any): Promise<any> {
         console.log('Error: ', err);
         return Promise.reject(err.message || err);

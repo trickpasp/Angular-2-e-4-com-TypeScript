@@ -32,7 +32,7 @@ let ContatoService = class ContatoService {
         return this.getContatos()
             .then((contatos) => contatos.find(contato => contato.id === id));
     }
-    // criando método de criar contatos
+    //método de criar contatos
     create(contato) {
         return this.http
             .post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
@@ -49,7 +49,15 @@ let ContatoService = class ContatoService {
             .then(() => contato)
             .catch(this.handleError);
     }
-    //criando metodo de tratamento de erro
+    delete(contato) {
+        const url = `${this.contatosUrl}/${contato.id}`; // app/contato/:id
+        return this.http
+            .delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => contato)
+            .catch(this.handleError);
+    }
+    //metodo de tratamento de erro
     handleError(err) {
         console.log('Error: ', err);
         return Promise.reject(err.message || err);
