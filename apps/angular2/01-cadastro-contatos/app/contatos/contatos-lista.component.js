@@ -67,14 +67,6 @@ let ContatosListaComponent = class ContatosListaComponent {
             'alert': true
         };
         this.classesCss['alert-' + tipo] = true; // vai um novo atributo no nosso abjeto
-        /*
-            {
-                'alert': true,
-                'alert-success: true,
-                'alert-danger': false,
-                ...
-            }
-        */
     }
 };
 ContatosListaComponent = __decorate([

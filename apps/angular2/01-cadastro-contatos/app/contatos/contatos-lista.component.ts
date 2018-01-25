@@ -80,14 +80,6 @@ export class ContatosListaComponent implements OnInit{
             'alert': true
         }
         this.classesCss['alert-'+tipo] = true; // vai um novo atributo no nosso abjeto
-        /* 
-            {
-                'alert': true,
-                'alert-success: true,
-                'alert-danger': false,
-                ...
-            }
-        */
     }
 
 }
