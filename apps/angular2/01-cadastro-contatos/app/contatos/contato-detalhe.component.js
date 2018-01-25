@@ -60,6 +60,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         }
         else {
             console.log('alterar contato');
+            promise = this.contatoService.update(this.contato);
         }
         promise.then(contato => this.location.back());
     }

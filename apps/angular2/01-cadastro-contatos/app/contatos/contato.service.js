@@ -34,9 +34,19 @@ let ContatoService = class ContatoService {
     }
     // criando método de criar contatos
     create(contato) {
-        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+        return this.http
+            .post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
             .toPromise()
             .then((response) => response.json().data)
+            .catch(this.handleError);
+    }
+    //método para alterar contato
+    update(contato) {
+        const url = `${this.contatosUrl}/${contato.id}`; // app/contato/:id
+        return this.http
+            .put(url, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(() => contato)
             .catch(this.handleError);
     }
     //criando metodo de tratamento de erro
