@@ -24,7 +24,10 @@ let ContatosListaComponent = class ContatosListaComponent {
             .then((contatos) => {
             this.contatos = contatos;
         }).catch(err => {
-            console.log('Aconteceu um erro: ', err);
+            this.mostrarMensagem({
+                tipo: 'danger',
+                texto: 'Ocorreu um erro ao buscar a lista de contatos!'
+            });
         });
     }
     //metodo utilizado para deletar
@@ -36,11 +39,42 @@ let ContatosListaComponent = class ContatosListaComponent {
                     .delete(contato)
                     .then(() => {
                     this.contatos = this.contatos.filter((c) => c.id != contato.id);
+                    this.mostrarMensagem({
+                        tipo: 'success',
+                        texto: 'Contato ' + contato.nome + ' deletado!'
+                    });
                 }).catch(err => {
                     console.log(err);
+                    this.mostrarMensagem({
+                        tipo: 'danger',
+                        texto: 'Ocorreu um erro ao tentar deletar um contato!'
+                    });
                 });
             }
         });
+    }
+    mostrarMensagem(mensagem) {
+        this.mensagem = mensagem;
+        this.montarClasses(mensagem.tipo);
+        if (mensagem.tipo != 'danger') {
+            setTimeout(() => {
+                this.mensagem = undefined;
+            }, 3000);
+        }
+    }
+    montarClasses(tipo) {
+        this.classesCss = {
+            'alert': true
+        };
+        this.classesCss['alert-' + tipo] = true; // vai um novo atributo no nosso abjeto
+        /*
+            {
+                'alert': true,
+                'alert-success: true,
+                'alert-danger': false,
+                ...
+            }
+        */
     }
 };
 ContatosListaComponent = __decorate([
