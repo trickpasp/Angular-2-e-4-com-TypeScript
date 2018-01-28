@@ -9,7 +9,7 @@ class InMemoryDataService {
             { id: 4, nome: 'Monkey D. Luffy', email: 'luffy@email.com', telefone: '(00) 0000-0000' },
             { id: 5, nome: 'Fada Cininho', email: 'cininho@email.com', telefone: '(00) 0000-0000' },
         ];
-        return { contatos };
+        return { 'contatos': contatos };
     }
 }
 exports.InMemoryDataService = InMemoryDataService;

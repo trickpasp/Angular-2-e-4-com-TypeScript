@@ -26,6 +26,11 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <tr *ngIf="contatos.length == 0">                        
+                        <td colspan="4" align="center">Nenhum registro encontrado!</td>
+                    </tr>
+
                     <!-- Aqui vamos passar um property binding no routerLink, fazendo dessa forma, 
                             podemos usar uma notação de array -->
                     <tr *ngFor="let c of contatos" [routerLink]="['/contato/save', c.id]">
