@@ -9,11 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require("@angular/core");
+const Observable_1 = require("rxjs/Observable");
+const Subject_1 = require("rxjs/Subject");
+const contato_service_1 = require("./contato.service");
 let ContatoBuscaComponent = class ContatoBuscaComponent {
-    constructor() { }
-    ngOnInit() { }
+    constructor(contatoService) {
+        this.contatoService = contatoService;
+        this.termosDaBusca = new Subject_1.Subject();
+    }
+    ngOnInit() {
+        this.contatos = this.termosDaBusca
+            .switchMap(term => {
+            console.log('Fez a busca: ', term);
+            return term ? this.contatoService.search(term) : Observable_1.Observable.of([]);
+        });
+        this.contatos.subscribe((contatos) => {
+            console.log('Retornou do servidor', contatos);
+        });
+    }
     search(term) {
-        console.log(term);
+        this.termosDaBusca.next(term);
     }
 };
 ContatoBuscaComponent = __decorate([
@@ -22,7 +37,7 @@ ContatoBuscaComponent = __decorate([
         selector: 'contato-busca',
         templateUrl: 'contato-busca.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [contato_service_1.ContatoService])
 ], ContatoBuscaComponent);
 exports.ContatoBuscaComponent = ContatoBuscaComponent;
 //# sourceMappingURL=contato-busca.component.js.map
