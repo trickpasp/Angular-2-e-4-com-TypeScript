@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 
 import {Contato} from './contato.model';
 import { ContatoService } from './contato.service';
+
 
 
 @Component({
@@ -22,6 +23,7 @@ import { ContatoService } from './contato.service';
 export class ContatoBuscaComponent implements OnInit, OnChanges {
         
     @Input() busca: string;
+    @Output() buscaChange: EventEmitter<string> = new EventEmitter<string>();
     contatos: Observable<Contato[]>;
     private termosDaBusca: Subject<string> = new Subject<string>();
 
@@ -34,7 +36,7 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
         this.contatos = this.termosDaBusca
             .debounceTime(500) //aguarde por 300ms para emitir novos eventos
             .distinctUntilChanged() //ignore se o próximo termo de busca for igual ao anterior
-            .switchMap(term => term ? this.contatoService.search(term) : Observable.of<Contato[]>([]))
+            .switchMap(termo => termo ? this.contatoService.search(termo) : Observable.of<Contato[]>([]))
             .catch(err => {
                 return Observable.of<Contato[]>([]);
             });       
@@ -45,8 +47,9 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
         this.search(busca.currentValue);
     }
 
-    search(term: string): void {
-        this.termosDaBusca.next(term);
+    search(termo: string): void {
+        this.termosDaBusca.next(termo);
+        this.buscaChange.emit(termo);
     }
 
     verDetalhe(contato: Contato): void {

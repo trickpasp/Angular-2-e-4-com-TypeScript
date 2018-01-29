@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label for="search"></label>
                 <input type="search" class="form-control" id="search" placeholder="Digite sua busca"
-                [ngModel]="busca">
+                [ngModel]="busca" (ngModelChange)="search($event)">
             </div>
 
             <ul class="list-group">
