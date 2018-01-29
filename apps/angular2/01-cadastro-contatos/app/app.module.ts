@@ -1,6 +1,7 @@
 import './util/rxjs-extesions';
 
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
@@ -13,11 +14,13 @@ import { ContatosModule } from './contatos/contatos.module';
 import { DialogService } from './dialog.service';
 
 
+
 @NgModule({
     imports: [
         AppRoutingModule,
         BrowserModule,        
         ContatosModule,
+        FormsModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],
