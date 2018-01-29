@@ -7,10 +7,11 @@ import 'rxjs/add/operator/toPromise';
 
 import { Contato } from './contato.model';
 import { CONTATOS } from './contatos.mock';
+import { ServiceInterface } from '../interfaces/service.interface';
 
 
 @Injectable()
-export class ContatoService{
+export class ContatoService implements ServiceInterface<Contato> {
     
     //url onde vamos utilizar o simulador de banco de dados
     private contatosUrl: string = 'app/contatos';
@@ -22,15 +23,15 @@ export class ContatoService{
     
     // Fazendo chamada assicrona ao servidor
     // Convertemos a chamada http para uma promise 
-    getContatos(): Promise<Contato[]> {
+    findAll(): Promise<Contato[]> {
         return this.http.get(this.contatosUrl)
                 .toPromise()
                 .then(response => response.json().data as Contato[])
                 .catch(this.handleError);
     }
     //obtendo usuário pelo id
-    getContato(id: number): Promise<Contato> {
-        return this.getContatos()
+    find(id: number): Promise<Contato> {
+        return this.findAll()
             .then((contatos: Contato[]) => contatos.find(contato =>  contato.id === id));
     } 
 
@@ -89,7 +90,7 @@ export class ContatoService{
         })
         .then(() => {
             console.log("Terceiro then")
-            return this.getContatos();
+            return this.findAll();
         });
     }
 

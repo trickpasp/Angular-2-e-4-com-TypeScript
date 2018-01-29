@@ -30,7 +30,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             //verificando parâmetro de rota
             if (id) {
                 this.isNew = false;
-                this.contatoService.getContato(id)
+                this.contatoService.find(id)
                     .then((contato) => {
                     this.contato = contato;
                 });

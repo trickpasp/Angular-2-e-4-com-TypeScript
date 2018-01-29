@@ -26,7 +26,7 @@ export class ContatosListaComponent implements OnInit{
     ){}
 
     ngOnInit(): void {
-        this.contatoService.getContatos()
+        this.contatoService.findAll()
             //usando promise, usando arraw function
             .then((contatos: Contato[]) =>{
                   this.contatos = contatos;  

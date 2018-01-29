@@ -21,15 +21,15 @@ let ContatoService = class ContatoService {
     }
     // Fazendo chamada assicrona ao servidor
     // Convertemos a chamada http para uma promise 
-    getContatos() {
+    findAll() {
         return this.http.get(this.contatosUrl)
             .toPromise()
             .then(response => response.json().data)
             .catch(this.handleError);
     }
     //obtendo usuário pelo id
-    getContato(id) {
-        return this.getContatos()
+    find(id) {
+        return this.findAll()
             .then((contatos) => contatos.find(contato => contato.id === id));
     }
     //método de criar contatos
@@ -83,7 +83,7 @@ let ContatoService = class ContatoService {
         })
             .then(() => {
             console.log("Terceiro then");
-            return this.getContatos();
+            return this.findAll();
         });
     }
     search(term) {
