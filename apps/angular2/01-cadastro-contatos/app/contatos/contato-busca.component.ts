@@ -26,16 +26,10 @@ export class ContatoBuscaComponent implements OnInit {
         this.contatos = this.termosDaBusca
             .debounceTime(500) //aguarde por 300ms para emitir novos eventos
             .distinctUntilChanged() //ignore se o próximo termo de busca for igual ao anterior
-            .switchMap(term => {
-                console.log('Fez a busca: ', term);
-                return term ? this.contatoService.search(term) : Observable.of<Contato[]>([]);
-            }).catch(err => {
+            .switchMap(term => term ? this.contatoService.search(term) : Observable.of<Contato[]>([]))
+            .catch(err => {
                 return Observable.of<Contato[]>([]);
-            });
-        
-        this.contatos.subscribe((contatos: Contato[]) => {
-            console.log('Retornou do servidor', contatos);
-        });
+            });       
     }
 
     search(term: string): void {
